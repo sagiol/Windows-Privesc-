@@ -1,10 +1,11 @@
 # Windows-Privesc
+
+# Basic commands:
 ```
-Basic commands:
 whoami - command to see corrent user.
 
 ```
-# reverse shell
+## reverse shell
 ```
 
 ```
