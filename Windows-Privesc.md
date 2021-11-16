@@ -1,6 +1,6 @@
 # Windows-Privesc
 ```
-Basic commands:
-whoami - command to see corrent user.
+**Basic commands:
+****whoami** - command to see corrent user.
 
 ```
