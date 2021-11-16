@@ -19,6 +19,7 @@ shell - command to get shell.
 findstr - command to grep specific thing that you want.
 hostname - command to get hostname.
 wmic qfe - command to extract patching.
+wmic logicaldisk - to get the list of drives.
 ```
 ## Reverse shell using ftp
 ```
@@ -35,8 +36,10 @@ Then we need to go the the ftp server and upload our file and execute it.
 # System Enumeration
 ```
 First lets use the command systeminfo.
+---
 For example we can use systeminfo | findstr /B /C:"OS Name" /C:"OS Version" /C:"System Type" to get specific things that we want.
-
+---
+We can see how many drives are the in the system by using the command wmic logicaldisk.
 
 ```
 
