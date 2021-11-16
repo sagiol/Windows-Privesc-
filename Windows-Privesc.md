@@ -5,7 +5,7 @@
 whoami - command to see corrent user.
 
 ```
-## reverse shell
+## Reverse shell
 ```
 
 ```
