@@ -112,7 +112,7 @@ jaws-enum.ps1
 ---
 Other
 ---
-windows-exploit-suggester.py (local)
+windows-exploit-suggester.py (local on attack machine)
 Exploit suggester (Metasploit)
 
 ```
