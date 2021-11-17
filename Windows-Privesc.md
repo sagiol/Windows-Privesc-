@@ -14,7 +14,7 @@ Meterpeter is deployed using in-memory DLL injection. As a result, Meterpeter re
 ```
 whoami - command to see corrent user.
 ---
-getuid - command to see Server username.
+dir - command to list all files and directories that exist.
 ---
 sysinfo - command to see system info.
 ---
@@ -35,6 +35,7 @@ net localgroup - command to get the localgroups that exit on the system.
 netstat - command to get the ports.
 ---
 sc - command to use service control.
+---
 ```
 ## Reverse shell using ftp
 ```
