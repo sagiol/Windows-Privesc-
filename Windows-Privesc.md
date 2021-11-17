@@ -94,3 +94,24 @@ To see all of the services that are running on the machine we can use the comman
 
 To see the firewalls that are up we can use the command ---> nets advfirewall firewall dump / netsh firewall show state / netsh firewall show config.
 ```
+# Automated Tools
+```
+Executables
+---
+winPEAS.exe
+Seatbelt.exe (need to compile)
+Watson.exe (need to compile)
+SharpUp.exe (need to compile)
+---
+PowerShell
+---
+Sherlock.ps1
+PowerUp.ps1
+jaws-enum.ps1
+---
+Other
+---
+windows-exploit-suggester.py (local)
+Exploit suggester (Metasploit)
+
+```
