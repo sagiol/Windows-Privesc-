@@ -101,7 +101,7 @@ Executables
 ---
 winPEAS.exe
 Seatbelt.exe (need to compile)
-Watson.exe (need to compile)
+Watson.exe (need to compile) (looks for common vulnerabilites)
 SharpUp.exe (need to compile)
 ---
 PowerShell
