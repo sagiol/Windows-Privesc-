@@ -106,7 +106,7 @@ SharpUp.exe (need to compile)
 ---
 PowerShell
 ---
-Sherlock.ps1
+Sherlock.ps1 (looks for common vulnerabilites)
 PowerUp.ps1
 jaws-enum.ps1
 ---
