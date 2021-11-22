@@ -164,8 +164,11 @@ After we've uploaded the file we can execute it and get a reverse shell.
 First we need to look for a file named bash.exe/ wsl.exe.
 We can use the command ---> where /R (recursive) c:\windows (any directory we think it my be in) bash.exe/ wsl.exe.
 Now we need to execute the file that we've found.
-Another way we can abuse the wsl.exe/ bash.exe files is using commands with them for example:
+[Another way we can abuse the wsl.exe/ bash.exe files is using commands with them for example:
 1. wsl whoami
-2. wsl python -c 'Python_Reverse_Shell'
-When we've executed the file we will get a windows shell
+2. wsl python -c 'Python_Reverse_Shell']
+When we've executed the file we will get a Linux shell.
+Now we can use Linux basic enumeration techniques to try and find a way to get a higher privilege user (We can look at history, sudo -l, etc...).
+
+
 ```
