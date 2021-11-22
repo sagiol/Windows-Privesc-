@@ -170,5 +170,5 @@ Now we need to execute the file that we've found.
 When we've executed the file we will get a Linux shell.
 Now we can use Linux basic enumeration techniques to try and find a way to get a higher privilege user (We can look at history, sudo -l, etc...).
 Lets take a case when we found an administrator user and the password for that user now we can use psexec.py to connect to the machine.
-The basic command is ---> python3 psexec.py HOSTNAME/username:'password'@$IP.
+The basic command is ---> python3 psexec.py HOSTNAME/username:'password'@$IP. (note: if psexec.py doesn't work we can use smbexec.py or wmiexe.py).
 ```
