@@ -9,6 +9,10 @@ DLL - Dynamic-link library is Microsoft's implementation of the shared library c
 Meterpreter - Meterpreter is a Metaploit attack payload that provides an interactive shell from which an attacker can explore the target machine and execute code.
 Meterpeter is deployed using in-memory DLL injection. As a result, Meterpeter resides entirely in memory and writes nothing to disk.
 
+Token Impersonation - Tokens are temporary keys that allow you access to a system/network without having to provide credentials each time you access a file (like cookies for computers).
+There are two types of tokens:
+* Delegate - Created for logging into a machine or using Remote Desktop.
+* Impersonate - "non-interactive" such as attaching a network drive or a domain logon script.
 ```
 # Basic commands:
 ```
