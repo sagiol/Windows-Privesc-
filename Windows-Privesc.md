@@ -13,6 +13,10 @@ Token Impersonation - Tokens are temporary keys that allow you access to a syste
 There are two types of tokens:
 * Delegate - Created for logging into a machine or using Remote Desktop.
 * Impersonate - "non-interactive" such as attaching a network drive or a domain logon script.
+
+Potato Attacks - In potato attacks we are tricking the "NT AUTHORITY\SYSTEM" account into authenticating via NTLM to a TCP endpoint we control.
+We use the MIM (Man-in-the-middle) technique to attempt (NTLM relay) to locally negotiate a security token for the "NT AUTHORITY\SYSTEM" account. This is done through a series of windows API calls.
+Impersonate the token we have just negotiated. This can only be done if the attackers current account has the privilege to impersonate security tokens. This is usually true of most service accounts and not true of most user-level accounts.
 ```
 # Basic commands:
 ```
@@ -181,5 +185,5 @@ The basic command is ---> python3 psexec.py HOSTNAME/username:'password'@$IP. (n
 When we get a shell on a machine we can use the command ---> whoami /priv and see our privileges information, we need to look for SeImpersonatePrivilege if we have it Enabled we can abuse it.
 If we got a meterpreter shell we can use the command ---> getprivs and look for the SeImpersonatePrivilege.
 We can get information about what all privileges are able to do in the next page ---> https://github.com/gtworek/Priv2Admin.
-
+For information about potato attacks we can go to this site ---> https://foxglovesecurity.com/2016/09/26/rotten-potato-privilege-escalation-from-service-accounts-to-system/.
 ```
