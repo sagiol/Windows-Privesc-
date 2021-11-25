@@ -181,10 +181,10 @@ Lets take a case when we found an administrator user and the password for that u
 The basic command is ---> python3 psexec.py HOSTNAME/username:'password'@$IP. (note: if psexec.py doesn't work we can use smbexec.py or wmiexe.py).
 ```
 # Impersonation and Potato Attacks
-```
+``
 When we get a shell on a machine we can use the command ---> whoami /priv and see our privileges information, we need to look for SeImpersonatePrivilege if we have it Enabled we can abuse it.
 If we got a meterpreter shell we can use the command ---> getprivs and look for the SeImpersonatePrivilege.
 We can get information about what all privileges are able to do in the next page ---> https://github.com/gtworek/Priv2Admin.
 For information about potato attacks we can go to this site ---> https://foxglovesecurity.com/2016/09/26/rotten-potato-privilege-escalation-from-service-accounts-to-system/.
+``
 
-```
