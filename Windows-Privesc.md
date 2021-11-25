@@ -60,6 +60,8 @@ dir /R - command simillar to ls -arl in linux.
 ---
 more < $filename - command to get content of hidden files.
 ---
+cmdkey /list --- command to look for stored credentials on the machine.
+---
 ```
 ## Reverse shell using FTP/SMB and meterpreter
 ```
@@ -211,4 +213,18 @@ After we will use the exploit we will need to set out our options to the releven
 After we will get the shell we will use the command ---> load incognito (to load incognito extention).
 After we will use list_tokens -u (on the meterpreter shell).
 We will get some tokens that we can impersonate with the command ---> impersonate_token "Token_name" (e.x NT AUTHORITY\SYSTEM).
+```
+# getsystem
+```
+Meterpreter ONLY!!!!
+We can use this command to get authority\system on a box.
+in this command we got 3 technique's:
+1. It creates a named pipe from meterpreter and runs a service that runs cmd.exe /c echo "some data" > \\.\pipe[random pipe here]. after the cmd.exe connects to the meterpreter's naamed pipe the meterpreter has the opportunity to impersonate that security context.
+2. Is like technique 1. It creates a name pipe and impersonates the security context of the first client to connect to it. To create a client with the SYSTEM user context this technique drops aDLL to disk and schedules rundll32.exe as a service to run the DLL as SYSTEM.  (no recomended to use because it can get cought by AV).
+3. This technique is aa little different, It assumes you have SeDebugPrivileges (whoami /priv). It loops through all open services to find one that is running as SYSTEM and that you have premissions to inject into. It uses reflective DLL injection to run its elevator.dll in the memory space of the service it finds. 
+https://blog.cobaltstrike.com/2014/04/02/what-happens-when-i-type-getsystem/
+```
+# Runas command
+```
+This command allows us to run commands as somebody else.
 ```
