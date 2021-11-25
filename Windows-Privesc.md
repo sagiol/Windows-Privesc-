@@ -62,6 +62,10 @@ more < $filename - command to get content of hidden files.
 ---
 cmdkey /list --- command to look for stored credentials on the machine.
 ---
+readpst - command to read pst files.
+---
+icacls - This command enables a user to view and modify an ACL. This command is similar to the cacls command available in previous versions of Windows(e.x icacls c:\users\public\desktop).
+---
 ```
 ## Reverse shell using FTP/SMB and meterpreter
 ```
