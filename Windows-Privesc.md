@@ -260,3 +260,7 @@ To see if we have premission to do so we can use the command ---> reg query HKLM
 We also need to run ---> reg query HKCU\Software\Policies\Microsoft\Windows\Installer we need to have 0x1 on that too for us to have premission to install windows packages with elevated privileges.
 WE NEED BOTH TO HAVE 0x1 for that to work.
 ```
+# rdesktop connection 
+```
+rdesktop $IP -g 95% 
+```
