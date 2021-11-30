@@ -305,8 +305,7 @@ Now we can replace the file with an executable with a shell and save it as .dll 
 We can use a windows_dll.c file and change the system() function and add the command "cmd.exe /k net localgroup administrators user /add" (we need to add our user).
 In the file we will see a way to compile it ---> x86_64-w64-mingw32-gcc windows_dll.c -shared -o output.dll.
 After we got our dll file we want to put in into the windows machine and put it in the path that is writable by us.
-After we need to use the command ---> sc stop dllsvc and after start the service.
-
+After we need to use the command ---> sc stop dllsvc and after start the service to use the dll file that we've created.
 ```
 # rdesktop connection 
 ```
