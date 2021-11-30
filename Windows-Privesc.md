@@ -292,7 +292,23 @@ We will set our payload to ---> windows/meterpreter/reverse_tcp and set what we 
 After we've created the executable file we will move it to the windows machine and put it in the startup folder.
 After its in the folder we will need to wait until an admin user will logon to the machine and we get a reverse shell.
 ```
+# DLL Hijacking
+```
+We will often see DLL files that are running executables, with DLL hijacking we are looking for a spesicif instence.
+When windows inv start a service or application it looks for dll if it doesnt exists we can get melicious with it.
+We can use a toll named Procmon/ powersploit or we can take the proccess offline and look thru it.
+Lets say we are using Procmon we will go to filter and add a new filter and add ---> result is NAME NOT FOUND and ---> Path ends with .dll.
+We can see that its running a list of events if the names are not found we can try to overwrite the dll if we can control the service and if the location is writeable.
+Now we are going to run the service we can try sc start dllsvc if its running we need to stop it and then run it again.
+And after we will look back to the Procmon and we will see more files we need to look for a place that we can write into.
+Now we can replace the file with an executable with a shell and save it as .dll file.
+We can use a windows_dll.c file and change the system() function and add the command "cmd.exe /k net localgroup administrators user /add" (we need to add our user).
+In the file we will see a way to compile it ---> x86_64-w64-mingw32-gcc windows_dll.c -shared -o output.dll.
+After we got our dll file we want to put in into the windows machine and put it in the path that is writable by us.
+After we need to use the command ---> sc stop dllsvc and after start the service.
+
+```
 # rdesktop connection 
 ```
-rdesktop $IP -g 95% ais an image eky
+rdesktop $IP -g 95% 
 ```
