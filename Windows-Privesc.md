@@ -144,6 +144,8 @@ Other
 ---
 windows-exploit-suggester.py (local on attack machine)
 Exploit suggester (Metasploit)
+Printernightmare - we can use a command ---> like Get-Service -Name Spooler and if its running we can abuse the service.
+PrinterBug
 ```
 # Local_exploit_suggester
 ```
